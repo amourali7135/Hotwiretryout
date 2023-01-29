@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-sm-8 card p-4 m-4 bg-light ">
+    <h2>Add a new restaurant</h2>
+      <%= simple_form_for @restaurant do |f|%>
+        <%= f.input :name, label: "Restaurant name" %>
+        <%= f.input :address, label: "Restaurant address" %>
+        <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
