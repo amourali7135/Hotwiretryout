@@ -1,3 +1,6 @@
+<%#= turbo_frame_tag "second_frame" do %>
+<%#= turbo_frame_tag "restaurant_#{@restaurant.id}" do %>
+<%= turbo_frame_tag @restaurant do %>
 <h1><%= @restaurant.name %> located @ <small><%= @restaurant.address %></small></h1>
 <h2><%= pluralize @restaurant.reviews.size, "review" %></h2>
 <div>
@@ -18,3 +21,4 @@
 <p><%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-primary' %></p>
 <p><%= button_to "Delete this restaurant", restaurant_path(@restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %></p>
 <p><%= link_to "Back to all restaurants", restaurants_path, class: 'btn btn-primary' %></p>
+<% end %>

@@ -1,0 +1,12 @@
+<%#= turbo_stream.prepend "restaurants", partial: "restaurants/restaurant", locals: { restaurant: @restaurant } %>
+
+<%#= turbo_stream.prepend "resturants" do %>
+  <%#= render partial: "restaurants/restaurant", locals: { restaurant: @restaurant } %>
+<%# end %>
+<%# This doesn't work though, why? %>
+
+<%= turbo_stream.prepend "restaurants", @restaurant %>
+
+
+
+<%= turbo_stream.update Restaurant.new, "" %>

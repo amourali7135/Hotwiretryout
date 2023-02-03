@@ -3,14 +3,26 @@
     <div class="col-6">
       <h1>Restaurants</h1>
       <ul>
+          <%= turbo_frame_tag "restaurants" do %> <%# this first?  %>
         <% @restaurants.each do |restaurant| %>
-          <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+          <%= turbo_frame_tag "restaurant_#{restaurant.id}" do %>
+            <li><%#= link_to restaurant.name, restaurant_path(restaurant) %></li>
+            <li><%= link_to restaurant.name, restaurant_path(restaurant), data: { turbo_frame: "_top" } %>, <%= link_to "Edit this restaurant", edit_restaurant_path(restaurant), class: 'btn btn-primary', data: { turbo_frame: restaurant } %>, <%= button_to "Delete this restaurant", restaurant_path(restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %> </li>
+          <% end %>
+          <% end %>
         <% end %>
       </ul>
     </div>
     <div class="col-6">
-      <h2>hello</h2>
-      <p><%= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary' %></p>
+      <%#= turbo_frame_tag "first_turbo_frame" do %>
+      <%= turbo_frame_tag Restaurant.new do %>
+        <h2>hello</h2>
+        <p><%= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
+        <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary' %></p>
+        <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
+        <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "_top" } %></p>
+        <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "second_frame" } %></p>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>

@@ -1,12 +1,15 @@
-<div class="container">
-  <div class="row align-items-center justify-content-center">
-    <div class="col-sm-8 card p-4 m-4 bg-light ">
-    <h2>Add a new restaurant</h2>
-      <%= simple_form_for @restaurant do |f|%>
-        <%= f.input :name, label: "Restaurant name" %>
-        <%= f.input :address, label: "Restaurant address" %>
-        <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
-      <% end %>
+  <%= turbo_frame_tag @restaurant do %>
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-8 card p-4 m-4 bg-light ">
+        <h2>Add a new restaurant</h2>
+        <%= simple_form_for @restaurant do |f|%>
+          <%= f.input :name, label: "Restaurant name" %>
+          <%= f.input :address, label: "Restaurant address" %>
+          <%= link_to "Cancel", restaurants_path, class: "btn btn-primary" %>
+          <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

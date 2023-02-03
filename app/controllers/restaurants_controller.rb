@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.all.ordered
   end
 
   def new
@@ -10,8 +10,10 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-      flash[:notice] = 'Your restaurant was successfully created!'
-      redirect_to restaurants_path, method: :get
+      respond_to do |format|
+        format.html { redirect_to restaurants_path, notice: "Quote was successfully created." }
+        format.turbo_stream
+      end
     else
       flash[:error] = 'There was an error, please try again!'
       render 'new', status: :unprocessable_entity
@@ -21,7 +23,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    @review = Review.new  # Add this line
+    @review = Review.new # Add this line
   end
 
   def edit
@@ -32,7 +34,8 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
       flash[:notice] = "You've successfully updated your restaurant!"
-      redirect_to restaurant_path(@restaurant.id)
+      # redirect_to restaurant_path(@restaurant.id)
+      redirect_to restaurants_path
     else
       flash[:error] = "There was an error, please try again!"
       render 'edit', status: :unprocessable_entity
@@ -42,8 +45,12 @@ class RestaurantsController < ApplicationController
   def destroy
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
-    flash[:notice] = "You've successfully deleted this restaurant!"
-    redirect_to restaurants_path
+    # flash[:notice] = "You've successfully deleted this restaurant!"
+    # redirect_to restaurants_path
+    respond_to do |format|
+      format.html { redirect_to restaurants_path, notice: "Restaurant was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private
