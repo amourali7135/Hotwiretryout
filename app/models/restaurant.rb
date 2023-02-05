@@ -19,6 +19,7 @@ class Restaurant < ApplicationRecord
   # after_create_commit -> { broadcast_prepend_later_to "restaurants" }
   # after_update_commit -> { broadcast_replace_later_to "restaurants" }
   # after_destroy_commit -> { broadcast_remove_to "restaurants" }
+  
   # ultimate refactoring 
   broadcasts_to ->(restaurant) { "restaurants" }, inserts_by: :prepend
 
