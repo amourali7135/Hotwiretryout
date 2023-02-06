@@ -6,7 +6,6 @@
 <%# This doesn't work though, why? %>
 
 <%= turbo_stream.prepend "restaurants", @restaurant %>
-
-
-
 <%= turbo_stream.update Restaurant.new, "" %>
+<%= render_turbo_stream_flash_messages %>
+

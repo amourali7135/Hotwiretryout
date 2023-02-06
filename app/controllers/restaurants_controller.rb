@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: %i[show edit update destroy]
 
   def index
     @restaurants = current_company.restaurants.ordered
@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
       respond_to do |format|
         format.html { redirect_to restaurants_path, notice: "Restaurant was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Restaurant was successfully created." }
       end
     else
       flash[:error] = 'There was an error, please try again!'
@@ -36,9 +36,10 @@ class RestaurantsController < ApplicationController
   def update
     # @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
-      flash[:notice] = "You've successfully updated your restaurant!"
-      # redirect_to restaurant_path(@restaurant.id)
-      redirect_to restaurants_path
+      respond_to do |format|
+        format.html { redirect_to restaurants_path, notice: "restaurant was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "restaurant was successfully updated." }
+      end
     else
       flash[:error] = "There was an error, please try again!"
       render 'edit', status: :unprocessable_entity
@@ -52,7 +53,7 @@ class RestaurantsController < ApplicationController
     # redirect_to restaurants_path
     respond_to do |format|
       format.html { redirect_to restaurants_path, notice: "Restaurant was successfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Restaurant was successfully destroyed." }
     end
   end
 
@@ -63,9 +64,8 @@ class RestaurantsController < ApplicationController
   end
 
   def set_restaurant
-    # We must use current_company.quotes here instead of Quote
+    # We must use current_company.restaurants here instead of restaurant
     # for security reasons
     @restaurant = current_company.restaurants.find(params[:id])
   end
-
 end
