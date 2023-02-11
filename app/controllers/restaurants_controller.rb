@@ -27,6 +27,7 @@ class RestaurantsController < ApplicationController
   def show
     # @restaurant = Restaurant.find(params[:id])
     @review = Review.new # Add this line
+    @line_item_dates = @restaurant.line_item_dates.ordered
   end
 
   def edit

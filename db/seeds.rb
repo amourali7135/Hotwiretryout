@@ -49,3 +49,19 @@ user =
   )
 user.save!
 puts "Finished!"
+
+puts "Creating two line item dates..."
+lineitemdate = 
+LineItemDate.new( 
+    restaurant: Restaurant.first, 
+    date: Date.current
+  )
+  lineitemdate.save!
+
+  lineitemdate = 
+  LineItemDate.new(
+    restaurant: Restaurant.second, 
+    date: Date.current + 1.week
+  )
+  lineitemdate.save!
+  puts "Finished!"

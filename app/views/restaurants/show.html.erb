@@ -22,3 +22,19 @@
 <p><%= button_to "Delete this restaurant", restaurant_path(@restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %></p>
 <p><%= link_to "Back to all restaurants", restaurants_path, class: 'btn btn-primary' %></p>
 <% end %>
+
+<main class="container">
+  <%= link_to sanitize("&larr; Back to restaurants"), restaurants_path %>
+
+  <div class="header">
+    <h1>
+      <%= @restaurant.name %>
+    </h1>
+
+    <%= link_to "New date",
+                new_restaurant_line_item_date_path(@restaurant),
+                class: "btn btn--primary" %>
+  </div>
+
+  <%= render @line_item_dates, restaurant: @restaurant %>
+</main>

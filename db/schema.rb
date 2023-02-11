@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_135407) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_184055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_135407) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "line_item_dates", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date", "restaurant_id"], name: "index_line_item_dates_on_date_and_restaurant_id", unique: true
+    t.index ["date"], name: "index_line_item_dates_on_date"
+    t.index ["restaurant_id"], name: "index_line_item_dates_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -51,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_135407) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "line_item_dates", "restaurants"
   add_foreign_key "restaurants", "companies"
   add_foreign_key "reviews", "restaurants"
   add_foreign_key "users", "companies"

@@ -4,6 +4,7 @@ class Restaurant < ApplicationRecord
 
   validates :name, presence: true
   has_many :reviews, dependent: :destroy
+  has_many :line_item_dates, dependent: :destroy
 
   scope :ordered, -> { order(id: :desc) }
 

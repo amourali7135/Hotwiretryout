@@ -2,3 +2,9 @@
 
 <%= turbo_stream.remove @restaurant %>
 <%= render_turbo_stream_flash_messages %>
+
+<%# unless current_company.restaurants.exists? %>
+  <%#= turbo_stream.update Restaurant.new do %>
+    <%#= render "restaurants/empty_state" %>
+  <%# end %>
+<%# end %>
