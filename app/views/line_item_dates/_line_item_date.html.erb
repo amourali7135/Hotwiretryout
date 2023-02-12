@@ -6,11 +6,13 @@
 
     <div class="line-item-date__actions">
       <%= button_to "Delete",
-                    [restaurant, line_item_date],
-                    method: :delete,
-                    class: "btn btn--light" %>
+              restaurant_line_item_date_path(restaurant, line_item_date),
+              method: :delete,
+              form: { data: { turbo_confirm: "Are you sure?" } },
+              class: "btn btn--light" %>
       <%= link_to "Edit",
                   [:edit, restaurant, line_item_date],
+                  data: { turbo_frame: line_item_date },
                   class: "btn btn--light" %>
     </div>
   </div>

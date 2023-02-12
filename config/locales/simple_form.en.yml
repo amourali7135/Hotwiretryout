@@ -1,10 +1,10 @@
 en:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": "Yes"
+    "no": "No"
     required:
-      text: 'required'
-      mark: '*'
+      text: "required"
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
@@ -29,3 +29,21 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+      simple_form:
+      placeholders:
+        restaurant:
+          name: Name of your restaurant
+      labels:
+        restaurant:
+          name: Name
+        line_item_date:
+          date: Date
+
+    helpers:
+      submit:
+        restaurant:
+          create: Create restaurant
+          update: Update restaurant
+        line_item_date:
+          create: Create date
+          update: Update date

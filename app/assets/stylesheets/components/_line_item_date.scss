@@ -9,13 +9,13 @@
       gap: var(--space-xs);
     }
   
-    &__title {
-      font-size: var(--font-size-xl);
+    // &__title {
+    //   font-size: var(--font-size-xl);
   
-    //   @include media(tabletAndUp) {
-        // font-size: var(--font-size-xxl);
-    //   }
-    }
+    // //   @include media(tabletAndUp) {
+    //     // font-size: var(--font-size-xxl);
+    // //   }
+    // }
   
     &__actions {
       display: flex;

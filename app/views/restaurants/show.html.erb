@@ -1,40 +1,42 @@
 <%#= turbo_frame_tag "second_frame" do %>
-<%#= turbo_frame_tag "restaurant_#{@restaurant.id}" do %>
-<%= turbo_frame_tag @restaurant do %>
-<h1><%= @restaurant.name %> located @ <small><%= @restaurant.address %></small></h1>
-<h2><%= pluralize @restaurant.reviews.size, "review" %></h2>
-<div>
-  <% if @restaurant.reviews.blank? %>
-    Be the first to leave a review for <%= @restaurant.name %>
-  <% else %>
-    <% @restaurant.reviews.each do |review| %>
-      <p><%= review.content %></p>
+  <%#= turbo_frame_tag "restaurant_#{@restaurant.id}" do %>
+    <%= turbo_frame_tag @restaurant do %>
+      <h1><%= @restaurant.name %> located @ <small><%= @restaurant.address %></small></h1>
+      <h2><%= pluralize @restaurant.reviews.size, "review" %></h2>
+      <div>
+        <% if @restaurant.reviews.blank? %>
+          Be the first to leave a review for <%= @restaurant.name %>
+        <% else %>
+          <% @restaurant.reviews.each do |review| %>
+            <p><%= review.content %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="mb-4">
+        <%= simple_form_for([@restaurant, @review]) do |f| %>
+          <%= f.input :content, label: "Your review" %>
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <p><%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-primary' %></p>
+      <p><%= button_to "Delete this restaurant", restaurant_path(@restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %></p>
+      <p><%= link_to "Back to all restaurants", restaurants_path, class: 'btn btn-primary' %></p>
     <% end %>
-  <% end %>
-</div>
-<div class="mb-4">
-  <%= simple_form_for([@restaurant, @review]) do |f| %>
-    <%= f.input :content, label: "Your review" %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
-  <% end %>
-</div>
-<p><%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-primary' %></p>
-<p><%= button_to "Delete this restaurant", restaurant_path(@restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %></p>
-<p><%= link_to "Back to all restaurants", restaurants_path, class: 'btn btn-primary' %></p>
-<% end %>
-
-<main class="container">
-  <%= link_to sanitize("&larr; Back to restaurants"), restaurants_path %>
-
-  <div class="header">
-    <h1>
-      <%= @restaurant.name %>
-    </h1>
-
-    <%= link_to "New date",
+    <main class="container">
+      <%= link_to sanitize("&larr; Back to restaurants"), restaurants_path %>
+      <div class="header">
+        <h1>
+          <%= @restaurant.name %>
+        </h1>
+        <%= link_to "New date",
                 new_restaurant_line_item_date_path(@restaurant),
+                data: { turbo_frame: dom_id(LineItemDate.new) },
                 class: "btn btn--primary" %>
-  </div>
-
-  <%= render @line_item_dates, restaurant: @restaurant %>
-</main>
+      </div>
+      <%= turbo_frame_tag LineItemDate.new %>
+      <%= turbo_frame_tag "line_item_dates" do %>
+        <div class="line-item-date">
+          <%= render @line_item_dates, restaurant: @restaurant %>
+        </div>
+      <% end %>
+    </main>
