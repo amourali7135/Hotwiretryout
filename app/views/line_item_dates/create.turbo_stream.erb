@@ -4,7 +4,10 @@
 <%# Step 2: add the date at the right place %>
 <% if previous_date = @line_item_date.previous_date %>
   <%= turbo_stream.after previous_date do %>
+    <%#= render @line_item_date, restaurant: @restaurant %>
+  <%#= turbo_stream.append "line_item_dates" do %>
     <%= render @line_item_date, restaurant: @restaurant %>
+
   <% end %>
 <% else %>
   <%= turbo_stream.prepend "line_item_dates" do %>

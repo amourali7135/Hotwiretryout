@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
   def show
     # @restaurant = Restaurant.find(params[:id])
     @review = Review.new # Add this line
-    @line_item_dates = @restaurant.line_item_dates.ordered
+    @line_item_dates = @restaurant.line_item_dates.all.ordered
   end
 
   def edit
@@ -50,12 +50,12 @@ class RestaurantsController < ApplicationController
   def destroy
     # @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
-    # flash[:notice] = "You've successfully deleted this restaurant!"
-    # redirect_to restaurants_path
-    respond_to do |format|
-      format.html { redirect_to restaurants_path, notice: "Restaurant was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Restaurant was successfully destroyed." }
-    end
+    flash[:notice] = "You've successfully deleted this restaurant!"
+    redirect_to restaurants_path
+    # respond_to do |format|
+    #   format.html { redirect_to restaurants_path, notice: "Restaurant was successfully destroyed." }
+    #   format.turbo_stream { flash.now[:notice] = "Restaurant was successfully destroyed." }
+    # end
   end
 
   private

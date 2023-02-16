@@ -18,7 +18,8 @@ class LineItemDatesController < ApplicationController
         format.turbo_stream { flash.now[:notice] = "Date was successfully created." }
       end
     else
-      render :new, status: :unprocessable_entity
+      flash[:error] = 'There was an error, please try again!'
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -41,6 +42,9 @@ class LineItemDatesController < ApplicationController
 
   def destroy
     @line_item_date.destroy
+
+    # Why does turbo not work when this line isn't included?
+    redirect_to restaurant_path(@restaurant), notice: "Date was successfully destroyed."
   
     respond_to do |format|
       format.html { redirect_to restaurant_path(@restaurant), notice: "Date was successfully destroyed." }

@@ -20,17 +20,16 @@
           <% end %>
         </ul>
       </div>
-            
       <div class="col-6">
         <%#= turbo_frame_tag "first_turbo_frame" do %>
           <%= turbo_frame_tag Restaurant.new do %>
             <h2>hello</h2>
-              <p><%= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
-              <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary' %></p>
-              <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
-              <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "_top" } %></p>
-              <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "second_frame" } %></p>
-            <% end %>
-          </div>
+            <p><%= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
+            <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary' %></p>
+            <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: dom_id(Restaurant.new) } %></p>
+            <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "_top" } %></p>
+            <p><%#= link_to "Make new restaurant", new_restaurant_path, class: 'btn btn-primary', data: { turbo_frame: "second_frame" } %></p>
+          <% end %>
         </div>
       </div>
+    </div>
