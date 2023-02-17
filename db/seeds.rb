@@ -65,3 +65,46 @@ LineItemDate.new(
   )
   lineitemdate.save!
   puts "Finished!"
+
+  puts "Creating four line items..."
+  lineitem = 
+  LineItem.new(
+    line_item_date: LineItemDate.first,
+    name: "Meeting room",
+    description: "A cosy meeting room for 10 people", 
+    quantity: 1, 
+    unit_price: 1000, 
+    # line_item_date_id: Restaurant.first
+  )
+  lineitem.save!
+  lineitem = 
+  LineItem.new(
+    line_item_date: LineItemDate.second, 
+    name: "Meal tray", 
+    description: "Our delicious meal tray",
+    quantity: 10,
+    unit_price: 25,
+    # line_item_date_id: Restaurant.second
+  )
+  lineitem.save!
+  lineitem = 
+  LineItem.new(
+    line_item_date: LineItemDate.last, 
+    name: "Meeting room", 
+    description: "A cosy meeting room for 10 people",
+    quantity: 1,
+    unit_price: 1000,
+    # line_item_date_id: Restaurant.third
+  )
+  lineitem.save!
+  lineitem = 
+  LineItem.new(
+    line_item_date: LineItemDate.first, 
+    name: "Delete",
+    description: "Our delicious meal tray",
+    quantity: 10,
+    unit_price: 25,
+    # line_item_date_id: Restaurant.last
+  )
+  lineitem.save!
+  puts "...Finished!"

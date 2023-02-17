@@ -1,5 +1,6 @@
 class LineItemDate < ApplicationRecord
   belongs_to :restaurant
+  has_many :line_items, dependent: :destroy
 
   validates :date, presence: true, uniqueness: { scope: :restaurant_id }
 
