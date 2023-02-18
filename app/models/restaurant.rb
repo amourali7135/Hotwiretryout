@@ -5,8 +5,14 @@ class Restaurant < ApplicationRecord
   validates :name, presence: true
   has_many :reviews, dependent: :destroy
   has_many :line_item_dates, dependent: :destroy
+  has_many :line_items, through: :line_item_dates
+
 
   scope :ordered, -> { order(id: :desc) }
+
+  def total_price
+    line_items.sum(&:total_price)
+  end
 
   # after_create_commit -> { broadcast_prepend_to "restaurants", partial: "restaurants/restaurant", locals: { restaurant: self }, target: "restaurants" }
 

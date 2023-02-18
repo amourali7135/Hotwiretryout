@@ -22,7 +22,7 @@
       <p><%= button_to "Delete this restaurant", restaurant_path(@restaurant),  method: :delete, class: "btn btn-primary", form: { data: { turbo_confirm: "Are you sure?" } } %></p>
       <p><%= link_to "Back to all restaurants", restaurants_path, class: 'btn btn-primary' %></p>
     <% end %>
-    <main class="container">
+    <main class="container mb-4">
       <%= link_to sanitize("&larr; Back to restaurants"), restaurants_path %>
       <div class="header">
         <h1>
@@ -45,3 +45,7 @@
             <%# end %>
             <%# end %>
           </main>
+
+<%= turbo_frame_tag dom_id(@restaurant, :total) do %>
+<%= render "restaurants/total", restaurant: @restaurant %>
+<% end %>

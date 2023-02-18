@@ -3,8 +3,8 @@
   <div class="header">
     <h1>Edit item</h1>
   </div>
-  <%#= turbo_frame_tag @line_item do %>
-    <%= turbo_frame_tag dom_id(@line_item_date, :edit) do %>
+  <%= turbo_frame_tag @line_item do %>
+    <%#= turbo_frame_tag dom_id(@line_item_date, :edit) do %>
       <%= render "form",
              restaurant: @restaurant,
              line_item_date: @line_item_date,

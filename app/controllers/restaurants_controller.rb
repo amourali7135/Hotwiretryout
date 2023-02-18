@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
     @review = Review.new # Add this line
     # @line_item_dates = @restaurant.line_item_dates.all.ordered
     @line_item_dates = @restaurant.line_item_dates.includes(:line_items).ordered
+    # @line_items = @restaurant.line_items.all
   end
 
   def edit

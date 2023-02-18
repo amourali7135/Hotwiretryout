@@ -6,4 +6,8 @@
   <%= render @line_item, restaurant: @restaurant, line_item_date: @line_item_date %>
 <% end %>
 
+<%= turbo_stream.update dom_id(@restaurant, :total) do %>
+  <%= render "restaurants/total", restaurant: @restaurant %>
+<% end %>
+
 <%= render_turbo_stream_flash_messages %>
