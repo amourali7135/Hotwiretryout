@@ -7,4 +7,7 @@ Rails.application.routes.draw do
       resources :line_items, except: [:index, :show]
     end
   end
+
+  get "messages", to: "pages#messages"
+
 end
