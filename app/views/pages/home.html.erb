@@ -1,10 +1,29 @@
 <main class="container">
   <h1>Restaurant editor</h1>
   <p>A blazing fast Restaurant editor built with Hotwire</p>
-
   <% if user_signed_in? %>
     <%= link_to "View restaurants", restaurants_path, class: "btn btn--dark" %>
   <% else %>
     <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
   <% end %>
+  <div data-controller="ballpit" >
+    <h1>Stimulus experimentation area here!</h1>
+    <button class="btn btn-primary">TBD</button>
+  </div>
+  <div class="pt-4" data-controller="hello">
+    <input data-hello-target="name" type="text">
+    <button data-action="click->hello#greet">Greet</button>
+  </div>
+  <div data-controller="clipboard">
+    PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
+    <button data-action="clipboard#copy">Copy to Clipboard</button>
+  </div>
+  <div data-controller="clipboard">
+    PIN: <input data-clipboard-target="source" type="text" value="3737" readonly>
+    <button data-action="clipboard#copy">Copy to Clipboard</button>
+  </div>
+  <div data-controller="clipboard">
+    PIN: <textarea data-clipboard-target="source" readonly>3737</textarea>
+    <a href="#" data-action="clipboard#copy">Copy to Clipboard</a>
+  </div>
 </main>

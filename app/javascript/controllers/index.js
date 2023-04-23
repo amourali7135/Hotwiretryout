@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import BallpitController from "./ballpit_controller"
+application.register("ballpit", BallpitController)
+
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
+
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
