@@ -13,6 +13,9 @@ application.register("clipboard", ClipboardController)
 import ContentLoaderController from "./content_loader_controller"
 application.register("content-loader", ContentLoaderController)
 
+import ExperimentalController from "./experimental_controller"
+application.register("experimental", ExperimentalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
